@@ -1,16 +1,84 @@
-# React + Vite
+# 🛒 LocalMart AI  
+### AI-Powered Hyperlocal Marketplace for Local Businesses
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🚀 Project Introduction
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+LocalMart AI is a web-based platform designed to connect local businesses with nearby customers. It enables users to discover nearby shops, browse products, and place orders, while providing business owners with a dashboard to manage their inventory, orders, and sales.
 
-## React Compiler
+The project aims to build a simple, scalable, and practical digital solution for local commerce.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> ⚠️ Note: This project is currently in early development phase (Final Year Project).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+### 👤 Customer Side
+- Browse nearby stores based on location  
+- View products with details and availability  
+- AI-based product recommendations  
+- Add to cart and place orders  
+- Order history tracking  
+
+---
+
+### 🏪 Business Admin Side
+- Register and manage store profile  
+- Add, update, and delete products  
+- Manage inventory  
+- Process and track orders  
+- View basic sales data  
+
+---
+
+### 👑 Super Admin
+- Approve or reject store registrations  
+- Manage categories and service areas  
+- Monitor platform activity  
+- Manage users and businesses  
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js (Vite)  
+- Tailwind CSS  
+
+### Backend
+- Node.js  
+- Express.js  
+
+### Database
+- MongoDB (Atlas)  
+
+### Authentication
+- JSON Web Tokens (JWT)  
+
+### AI Module
+- Collaborative Filtering (Recommendation System)
+
+---
+
+## 🚧 Project Status
+
+- Project started (Initial phase)  
+- UI design in progress  
+- Backend structure planning  
+- Core features under development  
+
+---
+
+## 👥 Contributors
+
+- Tayyab Hasaan  
+- M. Haseeb Idrees  
+- Zayn Amin  
+
+---
+
+## 📄 License
+
+This project is developed for academic purposes (Final Year Project).
