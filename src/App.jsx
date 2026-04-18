@@ -14,8 +14,6 @@ import StorePage from "./pages/customer/StorePage";
 
 import BusinessDashboard from "./pages/business/BusinessDashboard";
 
-
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -32,9 +30,7 @@ export default function App() {
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/store/:id" element={<StorePage />} />
-
         <Route path="/business/dashboard" element={<BusinessDashboard />} />
-
       </Routes>
     </BrowserRouter>
   );
