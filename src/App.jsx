@@ -10,6 +10,7 @@ import OrdersPage from "./pages/customer/OrdersPage";
 import ProfilePage from "./pages/customer/ProfilePage";
 import CategoriesPage from "./pages/customer/CategoriesPage";
 import ProductsPage from "./pages/customer/ProductsPage";
+import StorePage from "./pages/customer/StorePage";
 
 import BusinessDashboard from "./pages/business/BusinessDashboard";
 
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/store/:id" element={<StorePage />} />
 
         <Route path="/business/dashboard" element={<BusinessDashboard />} />
 

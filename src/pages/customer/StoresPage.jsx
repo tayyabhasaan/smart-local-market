@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MapPin, Star, Clock, Search, SlidersHorizontal } from "lucide-react";
 import Navbar from "../../components/common/Navbar";
 import Footer from "../../components/common/Footer";
+import { Link } from "react-router-dom";
 
 const allStores = [
   {
@@ -132,7 +133,17 @@ const allStores = [
   },
 ];
 
-const categories = ["All", "Grocery", "Pharmacy", "Bakery", "Electronics", "Fruits & Veg", "Stationary", "Clothing", "Supermarket"];
+const categories = [
+  "All",
+  "Grocery",
+  "Pharmacy",
+  "Bakery",
+  "Electronics",
+  "Fruits & Veg",
+  "Stationary",
+  "Clothing",
+  "Supermarket",
+];
 
 export default function StoresPage() {
   const [search, setSearch] = useState("");
@@ -150,7 +161,8 @@ export default function StoresPage() {
     })
     .sort((a, b) => {
       if (sortBy === "rating") return b.rating - a.rating;
-      if (sortBy === "distance") return parseFloat(a.distance) - parseFloat(b.distance);
+      if (sortBy === "distance")
+        return parseFloat(a.distance) - parseFloat(b.distance);
       return 0;
     });
 
@@ -165,7 +177,8 @@ export default function StoresPage() {
             Stores Near You
           </h1>
           <p className="text-cream/60 text-sm flex items-center gap-1">
-            <MapPin size={13} /> Lahore, Pakistan — {allStores.length} stores found
+            <MapPin size={13} /> Lahore, Pakistan — {allStores.length} stores
+            found
           </p>
 
           {/* Search */}
@@ -183,10 +196,8 @@ export default function StoresPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-8">
-
         {/* Filters Row */}
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-6">
-
           {/* Category Pills */}
           <div className="flex gap-2 flex-wrap">
             {categories.map((cat) => (
@@ -234,7 +245,9 @@ export default function StoresPage() {
                 {/* Store Banner */}
                 <div className="bg-lavender h-32 flex items-center justify-center text-5xl relative">
                   {store.emoji}
-                  <span className={`absolute top-3 left-3 text-xs font-medium px-2 py-0.5 rounded-full ${store.tagColor}`}>
+                  <span
+                    className={`absolute top-3 left-3 text-xs font-medium px-2 py-0.5 rounded-full ${store.tagColor}`}
+                  >
                     {store.tag}
                   </span>
                 </div>
@@ -253,9 +266,16 @@ export default function StoresPage() {
 
                   {/* Rating */}
                   <div className="flex items-center gap-1 mb-4">
-                    <Star size={12} className="fill-yellow-400 text-yellow-400" />
-                    <span className="text-xs font-semibold text-olive">{store.rating}</span>
-                    <span className="text-xs text-olive/40">({store.reviews} reviews)</span>
+                    <Star
+                      size={12}
+                      className="fill-yellow-400 text-yellow-400"
+                    />
+                    <span className="text-xs font-semibold text-olive">
+                      {store.rating}
+                    </span>
+                    <span className="text-xs text-olive/40">
+                      ({store.reviews} reviews)
+                    </span>
                   </div>
 
                   {/* Footer Row */}
@@ -268,9 +288,12 @@ export default function StoresPage() {
                       <Clock size={11} />
                       {store.time}
                     </div>
-                    <button className="bg-purple text-white text-xs font-medium px-3 py-1.5 rounded-lg hover:bg-purple/90 transition-colors">
+                    <Link
+                      to={`/store/${store.id}`}
+                      className="bg-purple text-white text-xs font-medium px-3 py-1.5 rounded-lg hover:bg-purple/90 transition-colors"
+                    >
                       Visit Store
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
