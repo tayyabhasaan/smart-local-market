@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import { ShoppingCart, Menu, X, MapPin } from "lucide-react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   return (
     <nav className="bg-cream border-b border-olive/20 sticky top-0 z-50">
@@ -47,7 +49,7 @@ export default function Navbar() {
             <ShoppingCart size={22} />
             {/* Cart badge */}
             <span className="absolute -top-1 -right-1 bg-purple text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
-              0
+              {totalItems}
             </span>
           </Link>
 
