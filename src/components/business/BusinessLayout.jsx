@@ -1,17 +1,44 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  LayoutDashboard, Package, ShoppingBag,
-  BarChart2, Store, LogOut, Menu, X,
-  Bell, ChevronDown
+  LayoutDashboard,
+  Package,
+  ShoppingBag,
+  BarChart2,
+  Store,
+  LogOut,
+  Menu,
+  X,
+  Bell,
+  ChevronDown,
 } from "lucide-react";
 
 const navItems = [
-  { icon: <LayoutDashboard size={18} />, label: "Dashboard",  path: "/business/dashboard" },
-  { icon: <Package size={18} />,         label: "Products",   path: "/business/products" },
-  { icon: <ShoppingBag size={18} />,     label: "Orders",     path: "/business/orders" },
-  { icon: <BarChart2 size={18} />,       label: "Analytics",  path: "/business/analytics" },
-  { icon: <Store size={18} />,           label: "My Store",   path: "/business/store-profile" },
+  {
+    icon: <LayoutDashboard size={18} />,
+    label: "Dashboard",
+    path: "/business/dashboard",
+  },
+  {
+    icon: <Package size={18} />,
+    label: "Products",
+    path: "/business/products",
+  },
+  {
+    icon: <ShoppingBag size={18} />,
+    label: "Orders",
+    path: "/business/orders",
+  },
+  {
+    icon: <BarChart2 size={18} />,
+    label: "Analytics",
+    path: "/business/analytics",
+  },
+  {
+    icon: <Store size={18} />,
+    label: "My Store",
+    path: "/business/store-profile",
+  },
 ];
 
 export default function BusinessLayout({ children, title, subtitle }) {
@@ -20,16 +47,16 @@ export default function BusinessLayout({ children, title, subtitle }) {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-cream flex">
-
+    <div className="h-screen bg-cream flex overflow-hidden">
       {/* Sidebar */}
-      <aside className={`
-        fixed top-0 left-0 h-full z-40 bg-olive flex flex-col
-        transition-all duration-300 w-56
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-        md:relative md:translate-x-0
-      `}>
-
+      <aside
+        className={`
+          fixed top-0 left-0 h-screen z-40 bg-olive flex flex-col
+          transition-all duration-300 w-56 shrink-0
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          md:relative md:translate-x-0
+        `}
+      >
         {/* Logo */}
         <div className="flex items-center gap-3 px-5 py-5 border-b border-cream/10">
           <div className="w-8 h-8 bg-purple rounded-lg flex items-center justify-center shrink-0">
@@ -103,11 +130,9 @@ export default function BusinessLayout({ children, title, subtitle }) {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
-
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         {/* Top Bar */}
         <header className="bg-white border-b border-olive/10 px-4 md:px-6 py-4 flex items-center justify-between sticky top-0 z-20">
-
           <div className="flex items-center gap-3">
             {/* Hamburger */}
             <button
@@ -121,14 +146,15 @@ export default function BusinessLayout({ children, title, subtitle }) {
             <div>
               <h1 className="text-base font-bold text-olive">{title}</h1>
               {subtitle && (
-                <p className="text-xs text-olive/40 hidden sm:block">{subtitle}</p>
+                <p className="text-xs text-olive/40 hidden sm:block">
+                  {subtitle}
+                </p>
               )}
             </div>
           </div>
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
-
             {/* Notification Bell */}
             <button className="relative p-2 text-olive/60 hover:text-olive transition-colors">
               <Bell size={20} />
@@ -147,13 +173,18 @@ export default function BusinessLayout({ children, title, subtitle }) {
                 <span className="text-sm font-medium text-olive hidden sm:block">
                   Admin
                 </span>
-                <ChevronDown size={14} className="text-olive/50 hidden sm:block" />
+                <ChevronDown
+                  size={14}
+                  className="text-olive/50 hidden sm:block"
+                />
               </button>
 
               {profileOpen && (
                 <div className="absolute right-0 top-full mt-2 w-44 bg-white border border-olive/10 rounded-xl shadow-lg overflow-hidden z-50">
                   <div className="px-4 py-3 border-b border-olive/10">
-                    <p className="text-xs font-semibold text-olive">Al-Fatah Store</p>
+                    <p className="text-xs font-semibold text-olive">
+                      Al-Fatah Store
+                    </p>
                     <p className="text-xs text-olive/40">Business Admin</p>
                   </div>
                   <Link
@@ -176,10 +207,9 @@ export default function BusinessLayout({ children, title, subtitle }) {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 p-4 md:p-6 overflow-y-auto">
+        <main className="flex-1 p-4 md:p-6 overflow-y-auto h-full">
           {children}
         </main>
-
       </div>
     </div>
   );

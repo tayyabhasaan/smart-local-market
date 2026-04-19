@@ -13,6 +13,8 @@ import ProductsPage from "./pages/customer/ProductsPage";
 import StorePage from "./pages/customer/StorePage";
 
 import BusinessDashboard from "./pages/business/BusinessDashboard";
+import BusinessProducts from "./pages/business/BusinessProducts";
+import BusinessOrders from "./pages/business/BusinessOrders";
 
 export default function App() {
   return (
@@ -30,7 +32,11 @@ export default function App() {
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/store/:id" element={<StorePage />} />
+        
         <Route path="/business/dashboard" element={<BusinessDashboard />} />
+        <Route path="/business/products" element={<BusinessProducts />} />
+        <Route path="/business/orders" element={<BusinessOrders />} />
+
       </Routes>
     </BrowserRouter>
   );
