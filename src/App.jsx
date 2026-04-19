@@ -18,6 +18,8 @@ import BusinessOrders from "./pages/business/BusinessOrders";
 import BusinessAnalytics from "./pages/business/BusinessAnalytics";
 import BusinessStoreProfile from "./pages/business/BusinessStoreProfile";
 
+import AdminDashboard from "./pages/admin/AdminDashboard";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -40,6 +42,8 @@ export default function App() {
         <Route path="/business/orders" element={<BusinessOrders />} />
         <Route path="/business/analytics" element={<BusinessAnalytics />} />
         <Route path="/business/store-profile" element={<BusinessStoreProfile />} />
+
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
       </Routes>
     </BrowserRouter>
