@@ -19,6 +19,7 @@ import BusinessAnalytics from "./pages/business/BusinessAnalytics";
 import BusinessStoreProfile from "./pages/business/BusinessStoreProfile";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminStores from "./pages/admin/AdminStores";
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/business/store-profile" element={<BusinessStoreProfile />} />
 
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/stores" element={<AdminStores />} />
 
       </Routes>
     </BrowserRouter>
