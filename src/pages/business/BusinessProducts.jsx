@@ -1,43 +1,130 @@
 import { useState } from "react";
 import {
-  Plus, Search, Edit2, Trash2,
-  AlertCircle, X, Check
+  Plus,
+  Search,
+  Edit2,
+  Trash2,
+  AlertCircle,
+  X,
+  Check,
 } from "lucide-react";
 import BusinessLayout from "../../components/business/BusinessLayout";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const initialProducts = [
-  { id: 1, name: "Nestle Milk Pack 1L",    category: "Dairy",     price: 180, stock: 3,  emoji: "🥛", status: "Low Stock" },
-  { id: 2, name: "Panadol Extra (10 Tabs)",category: "Pharmacy",  price: 85,  stock: 30, emoji: "💊", status: "Active" },
-  { id: 3, name: "Fresh Brown Bread",      category: "Bakery",    price: 120, stock: 20, emoji: "🍞", status: "Active" },
-  { id: 4, name: "Surf Excel 1kg",         category: "Household", price: 450, stock: 2,  emoji: "🧺", status: "Low Stock" },
-  { id: 5, name: "Lays Classic Salted",    category: "Snacks",    price: 60,  stock: 60, emoji: "🍟", status: "Active" },
-  { id: 6, name: "Dettol Handwash 250ml",  category: "Household", price: 220, stock: 1,  emoji: "🧴", status: "Low Stock" },
-  { id: 7, name: "Colgate Toothpaste",     category: "Hair Care", price: 150, stock: 40, emoji: "🪥", status: "Active" },
-  { id: 8, name: "Basmati Rice 5kg",       category: "Grocery",   price: 950, stock: 0,  emoji: "🍚", status: "Out of Stock" },
+  {
+    id: 1,
+    name: "Nestle Milk Pack 1L",
+    category: "Dairy",
+    price: 180,
+    stock: 3,
+    emoji: "🥛",
+    status: "Low Stock",
+  },
+  {
+    id: 2,
+    name: "Panadol Extra (10 Tabs)",
+    category: "Pharmacy",
+    price: 85,
+    stock: 30,
+    emoji: "💊",
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Fresh Brown Bread",
+    category: "Bakery",
+    price: 120,
+    stock: 20,
+    emoji: "🍞",
+    status: "Active",
+  },
+  {
+    id: 4,
+    name: "Surf Excel 1kg",
+    category: "Household",
+    price: 450,
+    stock: 2,
+    emoji: "🧺",
+    status: "Low Stock",
+  },
+  {
+    id: 5,
+    name: "Lays Classic Salted",
+    category: "Snacks",
+    price: 60,
+    stock: 60,
+    emoji: "🍟",
+    status: "Active",
+  },
+  {
+    id: 6,
+    name: "Dettol Handwash 250ml",
+    category: "Household",
+    price: 220,
+    stock: 1,
+    emoji: "🧴",
+    status: "Low Stock",
+  },
+  {
+    id: 7,
+    name: "Colgate Toothpaste",
+    category: "Hair Care",
+    price: 150,
+    stock: 40,
+    emoji: "🪥",
+    status: "Active",
+  },
+  {
+    id: 8,
+    name: "Basmati Rice 5kg",
+    category: "Grocery",
+    price: 950,
+    stock: 0,
+    emoji: "🍚",
+    status: "Out of Stock",
+  },
 ];
 
-const categories = ["Grocery", "Dairy", "Bakery", "Pharmacy",
-  "Snacks", "Household", "Hair Care", "Beverages", "Fruits & Veg", "Electronics", "Stationary"];
+const categories = [
+  "Grocery",
+  "Dairy",
+  "Bakery",
+  "Pharmacy",
+  "Snacks",
+  "Household",
+  "Hair Care",
+  "Beverages",
+  "Fruits & Veg",
+  "Electronics",
+  "Stationary",
+];
 
 const emptyForm = {
-  name: "", category: "Grocery", price: "",
-  stock: "", emoji: "📦", status: "Active",
+  name: "",
+  category: "Grocery",
+  price: "",
+  stock: "",
+  emoji: "📦",
+  status: "Active",
 };
 
 const statusConfig = {
-  "Active":       "bg-green-100 text-green-700",
-  "Low Stock":    "bg-orange-100 text-orange-600",
+  Active: "bg-green-100 text-green-700",
+  "Low Stock": "bg-orange-100 text-orange-600",
   "Out of Stock": "bg-red-100 text-red-600",
 };
 
 export default function BusinessProducts() {
-  const [products, setProducts]     = useState(initialProducts);
-  const [search, setSearch]         = useState("");
-  const [filterStatus, setFilterStatus] = useState("All");
-  const [showModal, setShowModal]   = useState(false);
+  const [products, setProducts] = useState(initialProducts);
+  const [search, setSearch] = useState("");
+  const [searchParams] = useSearchParams();
+  const initialStatus = searchParams.get("status") || "All";
+  const [filterStatus, setFilterStatus] = useState(initialStatus);
+  const [showModal, setShowModal] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
-  const [form, setForm]             = useState(emptyForm);
-  const [deleteId, setDeleteId]     = useState(null);
+  const [form, setForm] = useState(emptyForm);
+  const [deleteId, setDeleteId] = useState(null);
 
   // Filter products
   const filtered = products.filter((p) => {
@@ -57,12 +144,12 @@ export default function BusinessProducts() {
   const openEdit = (product) => {
     setEditProduct(product);
     setForm({
-      name:     product.name,
+      name: product.name,
       category: product.category,
-      price:    product.price,
-      stock:    product.stock,
-      emoji:    product.emoji,
-      status:   product.status,
+      price: product.price,
+      stock: product.stock,
+      emoji: product.emoji,
+      status: product.status,
     });
     setShowModal(true);
   };
@@ -73,24 +160,28 @@ export default function BusinessProducts() {
 
     // Auto set status based on stock
     const stock = parseInt(form.stock);
-    const status = stock === 0 ? "Out of Stock"
-      : stock <= 5 ? "Low Stock"
-      : "Active";
+    const status =
+      stock === 0 ? "Out of Stock" : stock <= 5 ? "Low Stock" : "Active";
 
     if (editProduct) {
-      setProducts(products.map((p) =>
-        p.id === editProduct.id
-          ? { ...p, ...form, price: parseInt(form.price), stock, status }
-          : p
-      ));
+      setProducts(
+        products.map((p) =>
+          p.id === editProduct.id
+            ? { ...p, ...form, price: parseInt(form.price), stock, status }
+            : p,
+        ),
+      );
     } else {
-      setProducts([...products, {
-        id: Date.now(),
-        ...form,
-        price: parseInt(form.price),
-        stock,
-        status,
-      }]);
+      setProducts([
+        ...products,
+        {
+          id: Date.now(),
+          ...form,
+          price: parseInt(form.price),
+          stock,
+          status,
+        },
+      ]);
     }
     setShowModal(false);
   };
@@ -102,13 +193,9 @@ export default function BusinessProducts() {
   };
 
   return (
-    <BusinessLayout
-      title="Products"
-      subtitle="Manage your store inventory"
-    >
+    <BusinessLayout title="Products" subtitle="Manage your store inventory">
       {/* Top Bar */}
       <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between mb-6">
-
         {/* Search */}
         <div className="flex items-center bg-white border border-olive/20 rounded-xl overflow-hidden focus-within:border-purple transition-colors w-full sm:w-72">
           <Search size={16} className="ml-3 text-olive/40 shrink-0" />
@@ -146,12 +233,31 @@ export default function BusinessProducts() {
       {/* Stats Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {[
-          { label: "Total Products", value: products.length,                                            color: "bg-white" },
-          { label: "Active",         value: products.filter(p => p.status === "Active").length,         color: "bg-green-50" },
-          { label: "Low Stock",      value: products.filter(p => p.status === "Low Stock").length,      color: "bg-orange-50" },
-          { label: "Out of Stock",   value: products.filter(p => p.status === "Out of Stock").length,   color: "bg-red-50" },
+          {
+            label: "Total Products",
+            value: products.length,
+            color: "bg-white",
+          },
+          {
+            label: "Active",
+            value: products.filter((p) => p.status === "Active").length,
+            color: "bg-green-50",
+          },
+          {
+            label: "Low Stock",
+            value: products.filter((p) => p.status === "Low Stock").length,
+            color: "bg-orange-50",
+          },
+          {
+            label: "Out of Stock",
+            value: products.filter((p) => p.status === "Out of Stock").length,
+            color: "bg-red-50",
+          },
         ].map((s) => (
-          <div key={s.label} className={`${s.color} border border-olive/10 rounded-2xl px-4 py-3 text-center`}>
+          <div
+            key={s.label}
+            className={`${s.color} border border-olive/10 rounded-2xl px-4 py-3 text-center`}
+          >
             <p className="text-2xl font-bold text-olive">{s.value}</p>
             <p className="text-xs text-olive/50 mt-0.5">{s.label}</p>
           </div>
@@ -160,7 +266,6 @@ export default function BusinessProducts() {
 
       {/* Products Table */}
       <div className="bg-white border border-olive/10 rounded-2xl overflow-hidden">
-
         {/* Table Header */}
         <div className="grid grid-cols-6 px-5 py-3 text-xs font-semibold text-olive/40 uppercase tracking-wide border-b border-olive/10 bg-cream">
           <span className="col-span-2">Product</span>
@@ -192,7 +297,9 @@ export default function BusinessProducts() {
                   <p className="text-sm font-semibold text-olive leading-tight">
                     {product.name}
                   </p>
-                  <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusConfig[product.status]}`}>
+                  <span
+                    className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusConfig[product.status]}`}
+                  >
                     {product.status}
                   </span>
                 </div>
@@ -208,15 +315,22 @@ export default function BusinessProducts() {
 
               {/* Stock */}
               <div className="text-center">
-                <span className={`text-sm font-bold ${
-                  product.stock === 0 ? "text-red-500"
-                  : product.stock <= 5 ? "text-orange-500"
-                  : "text-green-600"
-                }`}>
+                <span
+                  className={`text-sm font-bold ${
+                    product.stock === 0
+                      ? "text-red-500"
+                      : product.stock <= 5
+                        ? "text-orange-500"
+                        : "text-green-600"
+                  }`}
+                >
                   {product.stock}
                 </span>
                 {product.stock <= 5 && product.stock > 0 && (
-                  <AlertCircle size={12} className="text-orange-400 inline ml-1" />
+                  <AlertCircle
+                    size={12}
+                    className="text-orange-400 inline ml-1"
+                  />
                 )}
               </div>
 
@@ -244,7 +358,6 @@ export default function BusinessProducts() {
       {showModal && (
         <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl w-full max-w-md shadow-xl">
-
             {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-olive/10">
               <h3 className="text-base font-bold text-olive">
@@ -260,7 +373,6 @@ export default function BusinessProducts() {
 
             {/* Modal Body */}
             <div className="px-6 py-5 flex flex-col gap-4">
-
               {/* Emoji + Name */}
               <div className="flex gap-3">
                 <div>
@@ -270,7 +382,9 @@ export default function BusinessProducts() {
                   <input
                     type="text"
                     value={form.emoji}
-                    onChange={(e) => setForm({ ...form, emoji: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, emoji: e.target.value })
+                    }
                     className="w-16 text-center border border-olive/20 rounded-xl px-2 py-3 text-xl outline-none focus:border-purple transition-colors"
                   />
                 </div>
@@ -295,10 +409,14 @@ export default function BusinessProducts() {
                 </label>
                 <select
                   value={form.category}
-                  onChange={(e) => setForm({ ...form, category: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, category: e.target.value })
+                  }
                   className="w-full border border-olive/20 rounded-xl px-3 py-3 text-sm text-olive outline-none focus:border-purple transition-colors"
                 >
-                  {categories.map((c) => <option key={c}>{c}</option>)}
+                  {categories.map((c) => (
+                    <option key={c}>{c}</option>
+                  ))}
                 </select>
               </div>
 
@@ -311,7 +429,9 @@ export default function BusinessProducts() {
                   <input
                     type="number"
                     value={form.price}
-                    onChange={(e) => setForm({ ...form, price: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, price: e.target.value })
+                    }
                     placeholder="e.g. 180"
                     className="w-full border border-olive/20 rounded-xl px-3 py-3 text-sm text-olive outline-none focus:border-purple transition-colors placeholder:text-olive/30"
                   />
@@ -323,7 +443,9 @@ export default function BusinessProducts() {
                   <input
                     type="number"
                     value={form.stock}
-                    onChange={(e) => setForm({ ...form, stock: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, stock: e.target.value })
+                    }
                     placeholder="e.g. 50"
                     className="w-full border border-olive/20 rounded-xl px-3 py-3 text-sm text-olive outline-none focus:border-purple transition-colors placeholder:text-olive/30"
                   />
@@ -332,7 +454,8 @@ export default function BusinessProducts() {
 
               {/* Stock hint */}
               <p className="text-xs text-olive/40 -mt-2">
-                Status auto-sets: 0 = Out of Stock · 1–5 = Low Stock · 6+ = Active
+                Status auto-sets: 0 = Out of Stock · 1–5 = Low Stock · 6+ =
+                Active
               </p>
             </div>
 
@@ -387,7 +510,6 @@ export default function BusinessProducts() {
           </div>
         </div>
       )}
-
     </BusinessLayout>
   );
 }
