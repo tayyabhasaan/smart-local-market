@@ -207,7 +207,7 @@ export default function BusinessStoreProfile() {
                     name="emoji"
                     value={form.emoji}
                     onChange={handleChange}
-                    className="w-full border border-olive/20 rounded-xl px-3 py-3 text-sm text-olive outline-none focus:border-purple transition-colors text-center text-xl"
+                    className="w-full border border-olive/20 rounded-xl px-3 py-3 text-sm text-olive outline-none focus:border-purple transition-colors text-center"
                   />
                 </div>
 
