@@ -22,6 +22,8 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminStores from "./pages/admin/AdminStores";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminCategories from "./pages/admin/AdminCategories";
+import BusinessRegister from "./pages/business/BusinessRegister";
+import BusinessLogin from "./pages/business/BusinessLogin";
 
 export default function App() {
   return (
@@ -50,6 +52,8 @@ export default function App() {
         <Route path="/admin/stores" element={<AdminStores />} />
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/categories" element={<AdminCategories />} />
+        <Route path="/business/register" element={<BusinessRegister />} />
+        <Route path="/business/login" element={<BusinessLogin />} />
 
       </Routes>
     </BrowserRouter>

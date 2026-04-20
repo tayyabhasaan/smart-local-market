@@ -71,7 +71,7 @@ export default function Footer() {
             <h4 className="font-semibold text-cream mb-4">For Businesses</h4>
             <ul className="flex flex-col gap-2">
               {[
-                { label: "Register Your Store", to: "/register-store" },
+                { label: "Register Your Store", to: "/business/register" },
                 { label: "Business Dashboard", to: "/business/dashboard" },
                 { label: "Manage Products", to: "/business/products" },
                 { label: "View Orders", to: "/business/orders" },

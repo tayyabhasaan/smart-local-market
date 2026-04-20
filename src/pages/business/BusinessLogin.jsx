@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { ShoppingCart, Mail, Lock, Eye, EyeOff, Store } from "lucide-react";
 
-export default function LoginPage() {
+export default function BusinessLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
 
@@ -12,14 +12,14 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login:", form);
+    console.log("Business Login:", form);
     // API call will go here later
   };
 
   return (
     <div className="min-h-screen bg-cream flex">
 
-      {/* Left Panel — Branding */}
+      {/* Left Panel */}
       <div className="hidden lg:flex flex-col justify-between w-1/2 bg-olive p-12">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
@@ -31,27 +31,27 @@ export default function LoginPage() {
           </span>
         </Link>
 
-        {/* Center Content */}
+        {/* Content */}
         <div>
-          <div className="text-6xl mb-6">🛒</div>
+          <div className="text-6xl mb-6">🏪</div>
           <h2 className="text-3xl font-bold text-cream leading-tight mb-4">
-            Your local market,<br />now online.
+            Welcome back,<br />Store Owner!
           </h2>
-          <p className="text-cream/60 text-base leading-relaxed max-w-sm">
-            Discover stores near you, browse fresh products,
-            and order from trusted local shops — all in one place.
+          <p className="text-cream/60 text-base leading-relaxed max-w-sm mb-8">
+            Login to manage your store, track orders,
+            and grow your business with DukaanAI.
           </p>
 
-          {/* Stats */}
-          <div className="flex gap-6 mt-8">
+          {/* Quick Stats */}
+          <div className="flex gap-6">
             {[
-              { value: "50+", label: "Local Stores" },
-              { value: "2k+", label: "Products" },
-              { value: "1.2k+", label: "Customers" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="text-cream font-bold text-xl">{stat.value}</p>
-                <p className="text-cream/50 text-xs">{stat.label}</p>
+              { value: "50+",   label: "Active Stores" },
+              { value: "5k+",   label: "Orders Served" },
+              { value: "1.2k+", label: "Happy Customers" },
+            ].map((s) => (
+              <div key={s.label}>
+                <p className="text-cream font-bold text-xl">{s.value}</p>
+                <p className="text-cream/50 text-xs">{s.label}</p>
               </div>
             ))}
           </div>
@@ -62,7 +62,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      {/* Right Panel — Form */}
+      {/* Right Panel */}
       <div className="flex-1 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-md">
 
@@ -76,13 +76,19 @@ export default function LoginPage() {
             </span>
           </Link>
 
+          {/* Business Badge */}
+          <div className="inline-flex items-center gap-2 bg-lavender text-purple text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+            <Store size={13} />
+            Business Portal
+          </div>
+
           {/* Heading */}
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-olive mb-1">
-              Welcome back
+              Login to your store
             </h1>
             <p className="text-olive/50 text-sm">
-              Login to continue shopping locally
+              Access your business dashboard
             </p>
           </div>
 
@@ -95,7 +101,7 @@ export default function LoginPage() {
                 Email Address
               </label>
               <div className="flex items-center bg-white border-2 border-olive/20 rounded-xl overflow-hidden focus-within:border-purple transition-colors">
-                <Mail size={17} className="ml-4 text-olive/40 shrink-0" />
+                <Mail size={16} className="ml-4 text-olive/40 shrink-0" />
                 <input
                   type="email"
                   name="email"
@@ -122,7 +128,7 @@ export default function LoginPage() {
                 </Link>
               </div>
               <div className="flex items-center bg-white border-2 border-olive/20 rounded-xl overflow-hidden focus-within:border-purple transition-colors">
-                <Lock size={17} className="ml-4 text-olive/40 shrink-0" />
+                <Lock size={16} className="ml-4 text-olive/40 shrink-0" />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
@@ -137,7 +143,7 @@ export default function LoginPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="pr-4 text-olive/40 hover:text-olive transition-colors"
                 >
-                  {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
@@ -147,9 +153,8 @@ export default function LoginPage() {
               type="submit"
               className="w-full bg-purple text-white font-semibold py-3.5 rounded-xl hover:bg-purple/90 transition-colors mt-2"
             >
-              Login
+              Login to Dashboard
             </button>
-
           </form>
 
           {/* Divider */}
@@ -160,25 +165,25 @@ export default function LoginPage() {
           </div>
 
           {/* Register Link */}
-          <p className="text-center text-sm text-olive/60">
-            Don't have an account?{" "}
+          <p className="text-center text-sm text-olive/60 mb-4">
+            Don't have a business account?{" "}
             <Link
-              to="/register"
+              to="/business/register"
               className="text-purple font-semibold hover:underline"
             >
-              Create one free
+              Register your store
             </Link>
           </p>
 
-          {/* Business CTA */}
-          <div className="mt-6 p-4 bg-lavender rounded-xl text-center">
-            <p className="text-sm text-olive/70">
-              Own a store?{" "}
+          {/* Customer Login */}
+          <div className="bg-cream border border-olive/10 rounded-xl px-4 py-3 text-center">
+            <p className="text-sm text-olive/60">
+              Are you a customer?{" "}
               <Link
-                to="/business/register"
+                to="/login"
                 className="text-purple font-semibold hover:underline"
               >
-                Register your business →
+                Login here →
               </Link>
             </p>
           </div>
