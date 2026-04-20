@@ -21,6 +21,7 @@ import BusinessStoreProfile from "./pages/business/BusinessStoreProfile";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminStores from "./pages/admin/AdminStores";
 import AdminUsers from "./pages/admin/AdminUsers";
+import AdminCategories from "./pages/admin/AdminCategories";
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/stores" element={<AdminStores />} />
         <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/categories" element={<AdminCategories />} />
 
       </Routes>
     </BrowserRouter>
