@@ -11,19 +11,21 @@ import ProfilePage from "./pages/customer/ProfilePage";
 import CategoriesPage from "./pages/customer/CategoriesPage";
 import ProductsPage from "./pages/customer/ProductsPage";
 import StorePage from "./pages/customer/StorePage";
+import ForgotPasswordPage from "./pages/customer/ForgotPasswordPage";
 
 import BusinessDashboard from "./pages/business/BusinessDashboard";
 import BusinessProducts from "./pages/business/BusinessProducts";
 import BusinessOrders from "./pages/business/BusinessOrders";
 import BusinessAnalytics from "./pages/business/BusinessAnalytics";
 import BusinessStoreProfile from "./pages/business/BusinessStoreProfile";
+import BusinessRegister from "./pages/business/BusinessRegister";
+import BusinessLogin from "./pages/business/BusinessLogin";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminStores from "./pages/admin/AdminStores";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminCategories from "./pages/admin/AdminCategories";
-import BusinessRegister from "./pages/business/BusinessRegister";
-import BusinessLogin from "./pages/business/BusinessLogin";
+import AdminLogin from "./pages/admin/AdminLogin";
 
 export default function App() {
   return (
@@ -41,19 +43,21 @@ export default function App() {
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/store/:id" element={<StorePage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
         <Route path="/business/dashboard" element={<BusinessDashboard />} />
         <Route path="/business/products" element={<BusinessProducts />} />
         <Route path="/business/orders" element={<BusinessOrders />} />
         <Route path="/business/analytics" element={<BusinessAnalytics />} />
         <Route path="/business/store-profile" element={<BusinessStoreProfile />} />
+        <Route path="/business/register" element={<BusinessRegister />} />
+        <Route path="/business/login" element={<BusinessLogin />} />
 
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/stores" element={<AdminStores />} />
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/categories" element={<AdminCategories />} />
-        <Route path="/business/register" element={<BusinessRegister />} />
-        <Route path="/business/login" element={<BusinessLogin />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
 
       </Routes>
     </BrowserRouter>
