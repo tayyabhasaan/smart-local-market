@@ -13,6 +13,7 @@ import ProductsPage from "./pages/customer/ProductsPage";
 import StorePage from "./pages/customer/StorePage";
 import ForgotPasswordPage from "./pages/customer/ForgotPasswordPage";
 import HelpCenter from "./pages/customer/HelpCenter";
+import PrivacyPolicy from "./pages/customer/PrivacyPolicy";
 
 import BusinessDashboard from "./pages/business/BusinessDashboard";
 import BusinessProducts from "./pages/business/BusinessProducts";
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/store/:id" element={<StorePage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/help" element={<HelpCenter />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
 
         <Route path="/business/dashboard" element={<BusinessDashboard />} />
         <Route path="/business/products" element={<BusinessProducts />} />
